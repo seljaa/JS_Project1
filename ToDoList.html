@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+		<title>ToDoList</title>
+		<link rel="stylesheet" href="ToDoStyle.css">
+    </head>
+    <body>
+
+<div id="firstDiv" class="hdr">
+    <h2>To Do List</h2>
+    <input type="text" id="inpt" placeholder="Write here">
+    <span onclick="newElement()" class="add">Add</span>
+</div>
+
+<ul id="thisUl">
+    <li>First thing</li>
+    <li>Second thing</li>
+    <li class="checked">Third thing</li>
+</ul>
+
+<script>
+
+// Tehdään close button
+
+    var myNodelist = document.getElementsByTagName("LI");
+    var i;
+    for (i = 0; i < myNodelist.length; i++) {
+        var span = document.createElement("SPAN");
+        var txt = document.createTextNode("\u00D7");
+        span.className = "close";
+        span.appendChild(txt);
+        myNodelist[i].appendChild(span);
+    }
+
+// Painamalla close button poistetaan asia listasta
+
+    var close = document.getElementsByClassName("close");
+    var i;
+    for (i = 0; i < close.length; i++) {
+        close[i].onclick = function() {
+        var div = this.parentElement;
+        div.style.display = "none";
+        }
+    }  
+
+// Uusi list item
+
+    function newElement() {
+        var li = document.createElement("li");
+        var inputValue = document.getElementById("inpt").value;
+        var t = document.createTextNode(inputValue);
+        li.appendChild(t);
+        if (inputValue === '') {
+            alert("You must write something!");
+        } else {
+            document.getElementById("thisUl").appendChild(li);
+    }
+    document.getElementById("inpt").value = "";
+
+    var span = document.createElement("SPAN");
+    var txt = document.createTextNode("\u00D7");
+    span.className = "close";
+    span.appendChild(txt);
+    li.appendChild(span);
+
+    for (i = 0; i < close.length; i++) {
+        close[i].onclick = function() {
+        var div = this.parentElement;
+        div.style.display = "none";
+        }
+    }
+}
+
+</script>
+
+    </body>
+</html>
